@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: raw_data
+    database: RAW_DATA
+    schema: RAW_DATA
+
+    tables:
+      - name: customers
+        description: "Raw customer data from Snowflake."
+
+      - name: orders
+        description: "Raw order data from Snowflake."
+
+      - name: products
+        description: "Raw product data from Snowflake."
+        
+        loaded_at_field: created_at
+        freshness:
+          warn_after: {count: 3, period: day}
+          error_after: {count: 5, period: day}
